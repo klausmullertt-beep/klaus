@@ -1,6 +1,6 @@
 {
   "buildCommand": "pnpm --filter @workspace/morarox run build",
-  "outputDirectory": "artifacts/morarox/dist/public",
+  "outputDirectory": "artifacts/morarox/dist",
   "installCommand": "pnpm install",
   "framework": null
 }
