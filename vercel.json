@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pnpm --filter @workspace/morarox run build",
-  "outputDirectory": "dist-vercel",
+  "buildCommand": "pnpm run build:vercel",
+  "outputDirectory": "dist",
   "installCommand": "pnpm install",
   "framework": null
 }
