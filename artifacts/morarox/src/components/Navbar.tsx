@@ -5,6 +5,7 @@ import logoImg from '@assets/IMG_0549_1784248813685.jpeg';
 
 const navLinks = [
   { name: 'Услуги', href: '#services' },
+  { name: 'Доп. товары', href: '#addons' },
   { name: 'Отзывы', href: '#reviews' },
   { name: 'О нас', href: '#about' },
   { name: 'Контакты', href: '#contact' },
@@ -35,7 +36,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link, i) => (
             <motion.a
               key={link.name}
@@ -53,7 +54,7 @@ export default function Navbar() {
             href="https://t.me/moraroxprog_bot"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-4 text-sm px-5 py-2 bg-white text-black font-bold hover:bg-gray-200 transition-all"
+            className="ml-2 text-sm px-5 py-2 bg-white text-black font-bold hover:bg-gray-200 transition-all"
           >
             Заказать
           </a>

@@ -8,10 +8,12 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
 import Services from './components/Services';
+import AddOns from './components/AddOns';
 import Reviews from './components/Reviews';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import AIChat from './components/AIChat';
 import Privacy from './pages/privacy';
 
 const queryClient = new QueryClient();
@@ -28,11 +30,13 @@ function Home() {
         <Hero />
         <Stats />
         <Services />
+        <AddOns />
         <Reviews />
         <About />
         <Contact />
       </main>
       <Footer />
+      <AIChat />
     </div>
   );
 }
