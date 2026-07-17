@@ -1,53 +1,53 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Send, Terminal } from 'lucide-react';
+import { Send, Mail, Phone } from 'lucide-react';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-32 bg-card relative z-10 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[100px]"></div>
-      </div>
+    <section id="contact" className="py-24 bg-black relative z-10">
+      <div className="container mx-auto px-6 max-w-3xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="text-gray-500 text-xs uppercase tracking-widest">Связаться с нами</span>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter mt-3 mb-6 text-white">
+            ГОТОВЫ НАЧАТЬ?
+          </h2>
+          <p className="text-gray-400 mb-10 text-sm leading-relaxed">
+            Напишите нам в Telegram-бот — расскажите о вашем проекте, 
+            и мы свяжемся с вами в течение нескольких часов.
+          </p>
 
-      <div className="container mx-auto px-6 relative">
-        <div className="max-w-3xl mx-auto bg-background border border-border p-1">
-          <div className="border border-border/50 p-8 md:p-12 relative overflow-hidden">
-            {/* Terminal header */}
-            <div className="absolute top-0 left-0 right-0 h-8 bg-card border-b border-border flex items-center px-4 gap-2">
-              <div className="w-3 h-3 rounded-full bg-destructive/80"></div>
-              <div className="w-3 h-3 rounded-full bg-accent/80"></div>
-              <div className="w-3 h-3 rounded-full bg-primary/80"></div>
-              <div className="mx-auto font-mono text-[10px] text-muted-foreground">morarox@system:~</div>
-            </div>
+          <a
+            href="https://t.me/moraroxprog_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-10 py-4 bg-white text-black font-bold text-sm hover:bg-gray-100 transition-all shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] mb-12"
+          >
+            <Send className="w-4 h-4" />
+            Написать в Telegram
+          </a>
 
-            <div className="pt-8 text-center">
-              <Terminal className="w-12 h-12 text-primary mx-auto mb-6" />
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
-                READY TO <span className="text-primary glow-text">INITIALIZE?</span>
-              </h2>
-              <p className="font-mono text-sm text-muted-foreground mb-12 max-w-md mx-auto">
-                Stop settling for slow, generic websites. Let's build something that runs circles around your competition.
-              </p>
-
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://t.me/morarox"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-16 items-center justify-center gap-3 bg-primary px-10 text-base font-mono font-bold text-primary-foreground transition-all hover:bg-primary/90 glow-box group"
-              >
-                <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                <span>DM @MORAROX</span>
-              </motion.a>
-
-              <div className="mt-8 flex items-center justify-center gap-2 font-mono text-xs text-muted-foreground">
-                <span className="animate-pulse w-2 h-2 bg-primary rounded-full inline-block"></span>
-                <span>STATUS: ACCEPTING NEW CLIENTS</span>
-              </div>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8 border-t border-white/10">
+            <a
+              href="mailto:moraroxprog@gmail.com"
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"
+            >
+              <Mail className="w-4 h-4" />
+              moraroxprog@gmail.com
+            </a>
+            <span className="hidden sm:block text-white/20">|</span>
+            <a
+              href="tel:+37125391503"
+              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"
+            >
+              <Phone className="w-4 h-4" />
+              +371 25 391 503
+            </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

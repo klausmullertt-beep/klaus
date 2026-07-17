@@ -1,98 +1,89 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
-// Correct import to handle dynamic path properly, or just use a standard img tag with the known path
-// Wait, the prompt says "user attached asset is at attached_assets/example.png ... reference it in the frontend with import examplePngPath from '@assets/example.png'"
-// But I don't have `@assets` alias set up in standard vite configs unless specified, I will use a relative import from root if possible, or just standard URL if it's in public. 
-// The generated image path is `attached_assets/generated_images/hero-bg.jpg`.
-// Let's create an alias if needed, or just copy it if we can't import it. Wait, I can't copy it easily.
-// Let's use a standard path approach or assume Vite doesn't know about `attached_assets` outside `src`.
-// Actually, `framer-motion` doesn't need to import the image, I can just use a standard `<img src="/attached_assets/..." />` but that won't work in Vite build.
-// Let's copy it to `public` using a shell command or just read it via import. Wait, I can't `import` from outside `src` in Vite by default unless configured.
-// I will use an absolute path for now and let the system handle it, or write a script to move it.
+import { Send } from 'lucide-react';
+import logoImg from '@assets/IMG_0549_1784248813685.jpeg';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background Graphic */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <img 
-          src="/hero-bg-fallback.jpg" 
-          alt="Workspace" 
-          className="w-full h-full object-cover object-center grayscale mix-blend-luminosity" 
-          onError={(e) => {
-            // Fallback if image not moved properly
-            (e.target as HTMLImageElement).style.display = 'none';
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/80 to-background"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-black">
+      {/* Background glow */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-white/5 blur-[120px]" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <div className="h-[1px] w-12 bg-primary"></div>
-            <span className="font-mono text-primary text-sm uppercase tracking-widest">System Online</span>
-          </motion.div>
+      <div className="container mx-auto px-6 relative z-10 text-center">
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center mb-8"
+        >
+          <img
+            src={logoImg}
+            alt="Morarox Prog"
+            className="w-28 h-28 md:w-36 md:h-36 rounded-full object-cover ring-2 ring-white/20 shadow-[0_0_60px_rgba(255,255,255,0.1)]"
+          />
+        </motion.div>
 
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-6xl md:text-8xl font-bold tracking-tighter mb-4 text-foreground"
-          >
-            MORAROX<span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">_PROG</span>
-          </motion.h1>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 border border-white/20 text-gray-400 text-xs uppercase tracking-widest mb-6"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+          Работаем 6 лет · 1500+ отзывов
+        </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mb-12"
-          >
-            I build digital infrastructure that doesn't break. 
-            High-performance web architecture, brutalist interfaces, and clean code.
-          </motion.p>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-5xl md:text-8xl font-black tracking-tighter mb-6 text-white leading-none"
+        >
+          MORAROX<br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">
+            PROG
+          </span>
+        </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-6"
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+        >
+          Разрабатываем сайты, Telegram-боты, VK-боты и мини-игры.<br />
+          Быстро, качественно, по доступной цене.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <a
+            href="https://t.me/moraroxprog_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-bold text-sm hover:bg-gray-100 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)] hover:shadow-[0_0_40px_rgba(255,255,255,0.25)]"
           >
-            <a 
-              href="#contact"
-              className="group relative inline-flex h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-mono font-bold text-primary-foreground transition-all hover:bg-primary/90 glow-box"
-            >
-              <span>ORDER_WEBSITE</span>
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-background"></div>
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-background"></div>
-            </a>
-            
-            <a 
-              href="#projects"
-              className="inline-flex h-14 items-center justify-center px-8 text-sm font-mono font-medium text-muted-foreground border border-border hover:border-primary/50 hover:text-foreground transition-colors"
-            >
-              VIEW_ARCHITECTURE
-            </a>
-          </motion.div>
-        </div>
+            <Send className="w-4 h-4" />
+            Заказать в Telegram
+          </a>
+          <a
+            href="#services"
+            className="inline-flex items-center justify-center px-8 py-4 border border-white/20 text-white text-sm hover:border-white/50 hover:bg-white/5 transition-all"
+          >
+            Наши услуги
+          </a>
+        </motion.div>
       </div>
-      
-      {/* Decorative vertical text */}
-      <div className="hidden md:block absolute right-8 top-1/2 -translate-y-1/2 rotate-90 origin-right">
-        <span className="font-mono text-xs text-muted-foreground/30 tracking-[0.5em] uppercase">
-          Morarox Prog // 2024
-        </span>
-      </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
     </section>
   );
 }

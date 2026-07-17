@@ -1,33 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function Stats() {
-  const stats = [
-    { label: "LINES_OF_CODE", value: "1.2M+" },
-    { label: "SYSTEMS_DEPLOYED", value: "47" },
-    { label: "UPTIME_AVERAGE", value: "99.99%" },
-    { label: "COFFEE_INTAKE_L", value: "8,402" }
-  ];
+const stats = [
+  { value: '6+', label: 'лет на рынке' },
+  { value: '1503', label: 'довольных клиентов' },
+  { value: '4', label: 'направления услуг' },
+  { value: '24/7', label: 'поддержка' },
+];
 
+export default function Stats() {
   return (
-    <section className="py-12 bg-background border-b border-border overflow-hidden">
+    <section className="py-16 bg-white text-black relative z-10">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x-0 md:divide-x divide-border">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="text-center px-4"
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              className="text-center"
             >
-              <div className="font-mono text-3xl md:text-5xl font-bold text-foreground mb-2 tracking-tighter">
-                {stat.value}
-              </div>
-              <div className="font-mono text-xs text-primary/70 tracking-widest uppercase">
-                {stat.label}
-              </div>
+              <div className="text-4xl md:text-5xl font-black tracking-tighter mb-1">{stat.value}</div>
+              <div className="text-sm text-gray-500 uppercase tracking-wide">{stat.label}</div>
             </motion.div>
           ))}
         </div>

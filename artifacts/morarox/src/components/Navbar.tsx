@@ -1,39 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Terminal } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import logoImg from '@assets/IMG_0549_1784248813685.jpeg';
+
+const navLinks = [
+  { name: 'Услуги', href: '#services' },
+  { name: 'Отзывы', href: '#reviews' },
+  { name: 'О нас', href: '#about' },
+  { name: 'Контакты', href: '#contact' },
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'System', href: '#about' },
-    { name: 'Architecture', href: '#skills' },
-    { name: 'Deployments', href: '#projects' },
-    { name: 'Initialize', href: '#contact' },
-  ];
-
   return (
-    <header 
-      className={`fixed top-0 w-full z-40 transition-all duration-300 border-b border-transparent ${
-        scrolled ? 'bg-background/80 backdrop-blur-md border-border/50 py-3' : 'bg-transparent py-5'
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? 'bg-black/90 backdrop-blur-md border-b border-white/10 py-2' : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group">
-          <Terminal className="w-6 h-6 text-primary group-hover:text-secondary transition-colors" />
-          <span className="font-mono font-bold text-xl tracking-tighter text-white">
-            morarox<span className="text-primary animate-pulse">_</span>
+        <a href="#" className="flex items-center gap-3 group">
+          <img src={logoImg} alt="Morarox Prog" className="w-10 h-10 rounded-full object-cover" />
+          <span className="font-bold text-lg tracking-tight text-white">
+            MORAROX <span className="text-gray-400">PROG</span>
           </span>
         </a>
 
+        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link, i) => (
             <motion.a
@@ -41,24 +42,64 @@ export default function Navbar() {
               href={link.href}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="font-mono text-sm text-muted-foreground hover:text-primary transition-colors relative group"
+              transition={{ delay: i * 0.08 }}
+              className="text-sm text-gray-400 hover:text-white transition-colors relative group"
             >
-              <span className="text-primary/50 mr-2 opacity-0 group-hover:opacity-100 transition-opacity">{'>'}</span>
               {link.name}
+              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300" />
             </motion.a>
           ))}
-          <motion.a
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4 }}
-            href="#contact"
-            className="ml-4 font-mono text-xs px-4 py-2 bg-primary/10 text-primary border border-primary/30 hover:bg-primary hover:text-background transition-all"
+          <a
+            href="https://t.me/moraroxprog_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-4 text-sm px-5 py-2 bg-white text-black font-bold hover:bg-gray-200 transition-all"
           >
-            EXECUTE
-          </motion.a>
+            Заказать
+          </a>
         </nav>
+
+        {/* Mobile burger */}
+        <button
+          className="md:hidden text-white"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-black/95 border-t border-white/10"
+          >
+            <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-gray-300 hover:text-white py-2 border-b border-white/5 text-sm"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <a
+                href="https://t.me/moraroxprog_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 text-center px-5 py-3 bg-white text-black font-bold text-sm"
+              >
+                Заказать
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
