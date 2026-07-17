@@ -15,6 +15,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AIChat from './components/AIChat';
 import Privacy from './pages/privacy';
+import Projects from './pages/projects';
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/privacy" component={Privacy} />
+      <Route path="/projects" component={Projects} />
       <Route component={() => (
         <div className="flex h-screen items-center justify-center font-mono text-white bg-black">
           404 | Страница не найдена
